@@ -1,2 +1,3 @@
-# sh_renamer
 simple image / music renamer
+
+- 제발 좀 만들자.....
