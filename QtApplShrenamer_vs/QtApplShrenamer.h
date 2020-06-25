@@ -11,7 +11,7 @@
 class QtApplShrenamer : public QMainWindow
 {
     Q_OBJECT
-
+        q
 public:
     QtApplShrenamer(QWidget *parent = Q_NULLPTR);
 
