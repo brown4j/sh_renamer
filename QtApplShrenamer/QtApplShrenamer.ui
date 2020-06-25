@@ -15,8 +15,31 @@
   </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QGridLayout" name="gridLayout">
+    <item row="1" column="0">
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <item>
+       <widget class="QListView" name="listViewLeft"/>
+      </item>
+      <item>
+       <widget class="QTableView" name="tableView"/>
+      </item>
+     </layout>
+    </item>
     <item row="0" column="0">
-     <layout class="QVBoxLayout" name="verticalLayout">
+     <layout class="QHBoxLayout" name="horizontalLayout_2">
+      <item>
+       <widget class="QPushButton" name="pushButtonUpDir">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>↑</string>
+        </property>
+       </widget>
+      </item>
       <item>
        <widget class="QLineEdit" name="lineEditCurrentPath">
         <property name="sizePolicy">
@@ -26,16 +49,6 @@
          </sizepolicy>
         </property>
        </widget>
-      </item>
-      <item>
-       <layout class="QHBoxLayout" name="horizontalLayout">
-        <item>
-         <widget class="QListView" name="listViewLeft"/>
-        </item>
-        <item>
-         <widget class="QTableView" name="tableView"/>
-        </item>
-       </layout>
       </item>
      </layout>
     </item>

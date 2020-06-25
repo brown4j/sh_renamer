@@ -5,6 +5,7 @@
 #include <QStringListModel>
 #include <QStandardItemModel>
 #include <QTreeView>
+#include <QMessageBox>
 
 #include "ui_QtApplShrenamer.h"
 
@@ -17,6 +18,10 @@ public:
 
 private:
     Ui::QtApplShrenamerClass ui;
-    //void resizeEvent(QResizeEvent*);
+
+private slots:
+    void UpDirectory();
 
 };
+
+ 

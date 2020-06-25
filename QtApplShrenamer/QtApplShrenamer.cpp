@@ -1,7 +1,6 @@
 #include "QtApplShrenamer.h"
 
-QtApplShrenamer::QtApplShrenamer(QWidget *parent) 
-    : QMainWindow(parent)
+QtApplShrenamer::QtApplShrenamer(QWidget *parent) : QMainWindow(parent)
 {
     ui.setupUi(this);
 
@@ -14,11 +13,12 @@ QtApplShrenamer::QtApplShrenamer(QWidget *parent)
     ui.lineEditCurrentPath->setText(QDir::currentPath());
 
 }
-//
-//void QtApplShrenamer::resizeEvent(QResizeEvent*)
-//{
-//    //ui.verticalLayoutWidget->setFixedSize(this->width(), this->height());
-//    //ui.verticalLayoutWidget->resize(this->width(), this->height());
-//
-//    //ui.verticalLayoutWidget->adjustSize();
-//}
+
+void QtApplShrenamer::UpDirectory()
+{
+    QMessageBox msgBox;
+    msgBox.setText("The document has been modified.");
+    msgBox.exec();
+}
+
+
