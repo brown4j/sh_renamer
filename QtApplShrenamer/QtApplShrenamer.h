@@ -11,12 +11,12 @@
 class QtApplShrenamer : public QMainWindow
 {
     Q_OBJECT
-        q
+
 public:
     QtApplShrenamer(QWidget *parent = Q_NULLPTR);
 
 private:
     Ui::QtApplShrenamerClass ui;
-    void resizeEvent(QResizeEvent*);
+    //void resizeEvent(QResizeEvent*);
 
 };
