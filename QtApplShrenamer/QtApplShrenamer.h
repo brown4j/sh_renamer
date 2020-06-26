@@ -15,12 +15,17 @@ class QtApplShrenamer : public QMainWindow
 
 public:
     QtApplShrenamer(QWidget *parent = Q_NULLPTR);
+    QDir* qdir;
 
 private:
     Ui::QtApplShrenamerClass ui;
+    
+    
+
+    void lineEdit_show();
 
 private slots:
-    void UpDirectory();
+    void pushButtonUpDir_clicked();
 
 };
 
