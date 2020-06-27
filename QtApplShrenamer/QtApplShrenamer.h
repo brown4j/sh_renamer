@@ -15,13 +15,15 @@ class QtApplShrenamer : public QMainWindow
 
 public:
     QtApplShrenamer(QWidget *parent = Q_NULLPTR);
+
+private:
     QDir* qdir;
+    QFileSystemModel* qfsModel;
+
 
 private:
     Ui::QtApplShrenamerClass ui;
     
-    
-
     void lineEdit_show();
 
 private slots:

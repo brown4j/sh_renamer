@@ -1,5 +1,5 @@
-#include "QtApplShrenamer.h"
 #include <QtWidgets/QApplication>
+#include "QtApplShrenamer.h"
 
 int main(int argc, char *argv[])
 {
