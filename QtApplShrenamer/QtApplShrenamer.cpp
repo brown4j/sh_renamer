@@ -8,8 +8,13 @@ QtApplShrenamer::QtApplShrenamer(QWidget *parent) : QMainWindow(parent)
     qfsModel = new QFileSystemModel;
     qfsModel->setRootPath(QDir::currentPath());
 
+    elementsPathChanged();
+
 // connect functions
-    connect(ui.pushButtonUpDir, SIGNAL(clicked()), this, SLOT(pushButtonUpDir_clicked()));
+    connect(ui.pushButtonUpDir, SIGNAL(clicked()), this, SLOT(movePathUpper()));
+    //connect(ui.pushButtonUpDir, SIGNAL(clicked()), this, SLOT(elementsPathChanged()));
+    connect(ui.pushButtonLeftDir, SIGNAL(clicked()) , this, SLOT(pushButtonUpDir_clicked()));
+
 }
 
 void QtApplShrenamer::pushButtonUpDir_clicked()
@@ -19,18 +24,25 @@ void QtApplShrenamer::pushButtonUpDir_clicked()
     //msgBox.setText("The document has been modified.");
     //msgBox.exec();
 
-    QMessageBox::information(this, "Current Path", qdir->path());
-
-    qdir->cdUp();
-    lineEdit_show();
 }
 
-void QtApplShrenamer::lineEdit_show()
+void QtApplShrenamer::elementsPathChanged()
 {
-    ui.setupUi(this);
+    //QMessageBox::information(this, "Current Path", QDir::currentPath());
+    //QMessageBox::information(this, "Current Path", qdir->path());
+    ui.lineEditCurrentPath->setText(qdir->path());
+    
+    qfsModel->setRootPath(qdir->path());
 
-    ui.lineEditCurrentPath->setText(qdir->currentPath());
-
+    //ui.listViewLeft->setModel(qfsModel);
+    //ui.listViewLeft->setRootIndex(qfsModel->index(QDir::currentPath()));
     ui.listViewLeft->setModel(qfsModel);
-    ui.tableView->setModel(qfsModel);
+    ui.listViewLeft->setRootIndex(qfsModel->index(qdir->path()));
+    //ui.tableView->setModel(qfsModel);
+}
+
+void QtApplShrenamer::movePathUpper() {
+    qdir->cdUp();
+    elementsPathChanged();
+
 }

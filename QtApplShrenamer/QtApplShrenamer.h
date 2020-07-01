@@ -24,10 +24,11 @@ private:
 private:
     Ui::QtApplShrenamerClass ui;
     
-    void lineEdit_show();
 
 private slots:
     void pushButtonUpDir_clicked();
+    void elementsPathChanged();
+    void movePathUpper();
 
 };
 
