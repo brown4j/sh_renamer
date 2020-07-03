@@ -12,17 +12,13 @@ QtApplShrenamer::QtApplShrenamer(QWidget *parent) : QMainWindow(parent)
 
 // connect functions
     connect(ui.pushButtonUpDir, SIGNAL(clicked()), this, SLOT(movePathUpper()));
-    //connect(ui.pushButtonUpDir, SIGNAL(clicked()), this, SLOT(elementsPathChanged()));
     connect(ui.pushButtonLeftDir, SIGNAL(clicked()) , this, SLOT(pushButtonUpDir_clicked()));
 
 }
 
 void QtApplShrenamer::pushButtonUpDir_clicked()
 {
-    //ui.setupUi(this);
-    //QMessageBox msgBox;
     //msgBox.setText("The document has been modified.");
-    //msgBox.exec();
 
 }
 
@@ -34,11 +30,8 @@ void QtApplShrenamer::elementsPathChanged()
     
     qfsModel->setRootPath(qdir->path());
 
-    //ui.listViewLeft->setModel(qfsModel);
-    //ui.listViewLeft->setRootIndex(qfsModel->index(QDir::currentPath()));
     ui.listViewLeft->setModel(qfsModel);
     ui.listViewLeft->setRootIndex(qfsModel->index(qdir->path()));
-    //ui.tableView->setModel(qfsModel);
 }
 
 void QtApplShrenamer::movePathUpper() {
