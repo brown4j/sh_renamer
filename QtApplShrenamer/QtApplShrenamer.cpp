@@ -5,6 +5,10 @@ QtApplShrenamer::QtApplShrenamer(QWidget *parent) : QMainWindow(parent)
     ui.setupUi(this);
 
     qdir = new QDir;
+    qdir->setPath(QDir::currentPath());
+
+    //QMessageBox::information(this, "Current Path", qdir->path());
+
     qfsModel = new QFileSystemModel;
     qfsModel->setRootPath(QDir::currentPath());
 
@@ -25,9 +29,7 @@ void QtApplShrenamer::pushButtonUpDir_clicked()
 void QtApplShrenamer::elementsPathChanged()
 {
     //QMessageBox::information(this, "Current Path", QDir::currentPath());
-    //QMessageBox::information(this, "Current Path", qdir->path());
     ui.lineEditCurrentPath->setText(qdir->path());
-    
     qfsModel->setRootPath(qdir->path());
 
     ui.listViewLeft->setModel(qfsModel);
