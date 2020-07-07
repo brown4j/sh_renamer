@@ -4,12 +4,15 @@ QtApplShrenamer::QtApplShrenamer(QWidget *parent) : QMainWindow(parent)
 {
     ui.setupUi(this);
 
-
-
     qdir = new QDir;
     qdir->setPath(QDir::currentPath());
 
-    QMessageBox::information(this, "Current Path", qdir->path());
+    //qfCurrent = new QFileSelector;
+    qfCurrent = new QFile;
+    qdirCurrent = new QDir;
+    qfi = new QFileInfo;
+    
+    //QMessageBox::information(this, "Current Path", qdir->path());
 
     qfsModel = new QFileSystemModel;
     qfsModel->setRootPath(QDir::currentPath());
@@ -19,7 +22,7 @@ QtApplShrenamer::QtApplShrenamer(QWidget *parent) : QMainWindow(parent)
 // connect functions
     connect(ui.pushButtonUpDir, SIGNAL(clicked()), this, SLOT(movePathUpper()));
     connect(ui.pushButtonLeftDir, SIGNAL(clicked()), this, SLOT(pushButtonUpDir_clicked()));
-    connect(ui.listViewLeft, SIGNAL(clicked(const QModelIndex& index)), this, SLOT(listViewLeft_ItemClicked(QModelIndex index)));
+    connect(ui.listViewLeft, SIGNAL(clicked(const QModelIndex)), this, SLOT(listViewLeft_ItemClicked(QModelIndex)));
 
 }
 
@@ -44,11 +47,21 @@ void QtApplShrenamer::movePathUpper() {
 }
 void QtApplShrenamer::listViewLeft_ItemClicked(const QModelIndex index) {
     QString qst = index.data().toString();
+    //qfCurrent->select(qst);
+    //qfCurrent->open()
+    qdirCurrent->setPath(qst);
 
-    //QString str = ui.listViewLeft.selected
-    //    data(index).toString();
+    qfi->setFile(qst);
 
-    QMessageBox::information(this, "Current Path", qst);
+
+
+
+    //const QMetaObject* mObject = qfCurrent->metaObject();
+    //mObject->
+    QMessageBox::information(this, "Current Path", qdirCurrent->path());
+    QString sA = QString::number(qfi->size());
+
+    QMessageBox::information(this, "Current Path", sA );
 
 }
 

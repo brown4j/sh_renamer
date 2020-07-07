@@ -8,6 +8,8 @@
 #include <QMessageBox>
 #include <QStatusBar>
 
+//#include <QFileSelector>
+
 #include "ui_QtApplShrenamer.h"
 
 class QtApplShrenamer : public QMainWindow
@@ -20,17 +22,22 @@ public:
 
 private:
     QDir* qdir;
+    QDir* qdirCurrent;
     QFileSystemModel* qfsModel;
-
+    //QFileSelector* qfCurrent;
+    QFile* qfCurrent;
+    QFileInfo* qfi;
 
 private:
     Ui::QtApplShrenamerClass ui;
 
 private slots:
+    void listViewLeft_ItemClicked(const QModelIndex index);
     void pushButtonUpDir_clicked();
     void elementsPathChanged();
     void movePathUpper();
-    void listViewLeft_ItemClicked(const QModelIndex index);
+
+    
 
 };
 
