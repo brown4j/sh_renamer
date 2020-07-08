@@ -38,6 +38,8 @@ void QtApplShrenamer::elementsPathChanged()
 
     ui.listViewLeft->setModel(qfsModel);
     ui.listViewLeft->setRootIndex(qfsModel->index(qdir->path()));
+    ui.tableViewRight->setModel(qfsModel);
+    ui.tableViewRight->setRootIndex(qfsModel->index(qdir->path()));
 }
 
 void QtApplShrenamer::movePathUpper() {
