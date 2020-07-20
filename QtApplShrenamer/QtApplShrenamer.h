@@ -30,15 +30,14 @@ private:
 
 private:
     Ui::QtApplShrenamerClass ui;
+    QString filesizeCalculator(const qint64 qi);
 
 private slots:
     void listViewLeft_ItemClicked(const QModelIndex index);
     void pushButtonUpDir_clicked();
     void elementsPathChanged();
     void movePathUpper();
-
     
-
 };
 
  

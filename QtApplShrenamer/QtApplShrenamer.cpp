@@ -40,6 +40,7 @@ void QtApplShrenamer::elementsPathChanged()
     ui.listViewLeft->setRootIndex(qfsModel->index(qdir->path()));
     ui.tableViewRight->setModel(qfsModel);
     ui.tableViewRight->setRootIndex(qfsModel->index(qdir->path()));
+    
 }
 
 void QtApplShrenamer::movePathUpper() {
@@ -47,6 +48,7 @@ void QtApplShrenamer::movePathUpper() {
     elementsPathChanged();
 
 }
+
 void QtApplShrenamer::listViewLeft_ItemClicked(const QModelIndex index) {
     QString qst = index.data().toString();
     //qfCurrent->select(qst);
@@ -55,20 +57,21 @@ void QtApplShrenamer::listViewLeft_ItemClicked(const QModelIndex index) {
 
     qfi->setFile(qst);
 
-
-
-
     //const QMetaObject* mObject = qfCurrent->metaObject();
     //mObject->
-    QMessageBox::information(this, "Current Path", qdirCurrent->path());
-    QString sA = QString::number(qfi->size());
+    //QMessageBox::information(this, "Current Path", qdirCurrent->path());
+    QMessageBox::information(this, "Current Path", filesizeCalculator(qfi->size()));
 
-    QMessageBox::information(this, "Current Path", sA );
-
+    ui.statusBarBottom->showMessage(qdirCurrent->path());
 }
-
 
 void QtApplShrenamer::createStatusBar()
 {
     statusBar()->showMessage(tr("Ready"));
+}
+
+QString QtApplShrenamer::filesizeCalculator(const qint64 qi)
+{
+    
+    return QString::number(qi);
 }

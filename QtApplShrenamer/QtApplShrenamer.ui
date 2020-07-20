@@ -105,7 +105,7 @@
    <addaction name="menuTools"/>
    <addaction name="menuHelp"/>
   </widget>
-  <widget class="QStatusBar" name="statusbar"/>
+  <widget class="QStatusBar" name="statusBarBottom"/>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources>
