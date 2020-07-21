@@ -60,9 +60,9 @@ void QtApplShrenamer::listViewLeft_ItemClicked(const QModelIndex index) {
     //const QMetaObject* mObject = qfCurrent->metaObject();
     //mObject->
     //QMessageBox::information(this, "Current Path", qdirCurrent->path());
-    QMessageBox::information(this, "Current Path", filesizeCalculator(qfi->size()));
+    //QMessageBox::information(this, "Current Path", filesizeCalculator(qfi->size()));
 
-    ui.statusBarBottom->showMessage(qdirCurrent->path());
+    ui.statusBarBottom->showMessage(qdirCurrent->path() + " (" + filesizeCalculator(qfi->size()) + ")");
 }
 
 void QtApplShrenamer::createStatusBar()
@@ -70,8 +70,18 @@ void QtApplShrenamer::createStatusBar()
     statusBar()->showMessage(tr("Ready"));
 }
 
-QString QtApplShrenamer::filesizeCalculator(const qint64 qi)
+QString QtApplShrenamer::filesizeCalculator(qint64 qi)
 {
-    
-    return QString::number(qi);
+    QString qsunit = "B";
+
+    if (qi > 1024*1024) {
+        qi /= (1024 * 1024);
+        qsunit = "MB";
+    }
+    else if (qi > 1024) {
+        qi /= 1024;
+        qsunit = "KB";
+    }
+
+    return QString::number(qi) + qsunit;
 }

@@ -30,7 +30,7 @@ private:
 
 private:
     Ui::QtApplShrenamerClass ui;
-    QString filesizeCalculator(const qint64 qi);
+    QString filesizeCalculator(qint64 qi);
 
 private slots:
     void listViewLeft_ItemClicked(const QModelIndex index);
