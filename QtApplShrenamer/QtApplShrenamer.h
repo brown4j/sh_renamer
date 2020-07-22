@@ -5,6 +5,8 @@
 #include <QStringListModel>
 #include <QStandardItemModel>
 #include <QTreeView>
+#include <QVBoxLayout>
+#include <QPushButton>
 
 class QtApplShrenamer : public QMainWindow
 {
@@ -12,6 +14,10 @@ class QtApplShrenamer : public QMainWindow
 
 public:
     QtApplShrenamer(QWidget *parent = Q_NULLPTR);
+
+private:
+    //QVBoxLayout* qvboxLayout;
+
 
 private:
     void resizeEvent(QResizeEvent*);

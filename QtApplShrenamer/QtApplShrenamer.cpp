@@ -3,9 +3,11 @@
 QtApplShrenamer::QtApplShrenamer(QWidget *parent) : QMainWindow(parent)
 {
 
-    QFileSystemModel* model = new QFileSystemModel;
-    model->setRootPath(QDir::currentPath());
+    //QFileSystemModel* model = new QFileSystemModel;
+    //model->setRootPath(QDir::currentPath());
       
+
+
 
 }
 
