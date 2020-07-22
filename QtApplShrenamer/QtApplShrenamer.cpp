@@ -11,8 +11,6 @@ QtApplShrenamer::QtApplShrenamer(QWidget *parent) : QMainWindow(parent)
     qfCurrent = new QFile;
     qdirCurrent = new QDir;
     qfi = new QFileInfo;
-    
-    //QMessageBox::information(this, "Current Path", qdir->path());
 
     qfsModel = new QFileSystemModel;
     qfsModel->setRootPath(QDir::currentPath());
@@ -57,9 +55,6 @@ void QtApplShrenamer::listViewLeft_ItemClicked(const QModelIndex index) {
 
     qfi->setFile(qst);
 
-    //const QMetaObject* mObject = qfCurrent->metaObject();
-    //mObject->
-    //QMessageBox::information(this, "Current Path", qdirCurrent->path());
     //QMessageBox::information(this, "Current Path", filesizeCalculator(qfi->size()));
 
     ui.statusBarBottom->showMessage(qdirCurrent->path() + " (" + filesizeCalculator(qfi->size()) + ")");
