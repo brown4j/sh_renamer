@@ -2,16 +2,6 @@
 
 QtApplShrenamer::QtApplShrenamer(QWidget *parent) : QMainWindow(parent)
 {
-    ui.setupUi(this);
-
-    qdir = new QDir;
-    qdir->setPath(QDir::currentPath());
-
-    //qfCurrent = new QFileSelector;
-    qfCurrent = new QFile;
-    qdirCurrent = new QDir;
-    qfi = new QFileInfo;
-
     qfsModel = new QFileSystemModel;
     qfsModel->setRootPath(QDir::currentPath());
 
@@ -67,16 +57,5 @@ void QtApplShrenamer::createStatusBar()
 
 QString QtApplShrenamer::filesizeCalculator(qint64 qi)
 {
-    QString qsunit = "B";
-
-    if (qi > 1024*1024) {
-        qi /= (1024 * 1024);
-        qsunit = "MB";
-    }
-    else if (qi > 1024) {
-        qi /= 1024;
-        qsunit = "KB";
-    }
-
-    return QString::number(qi) + qsunit;
+	
 }

@@ -5,12 +5,8 @@
 #include <QStringListModel>
 #include <QStandardItemModel>
 #include <QTreeView>
-#include <QMessageBox>
-#include <QStatusBar>
-
-//#include <QFileSelector>
-
-#include "ui_QtApplShrenamer.h"
+#include <QVBoxLayout>
+#include <QPushButton>
 
 class QtApplShrenamer : public QMainWindow
 {
@@ -29,8 +25,11 @@ private:
     QFileInfo* qfi;
 
 private:
-    Ui::QtApplShrenamerClass ui;
-    QString filesizeCalculator(qint64 qi);
+    //QVBoxLayout* qvboxLayout;
+
+
+private:
+    void resizeEvent(QResizeEvent*);
 
 private slots:
     void listViewLeft_ItemClicked(const QModelIndex index);
