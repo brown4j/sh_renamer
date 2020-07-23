@@ -21,6 +21,15 @@ class QtApplShrenamer : public QWidget
 
 public:
     QtApplShrenamer(QWidget *parent = Q_NULLPTR);
+    void createStatusBar();
+
+private:
+    QDir* qdir;
+    QDir* qdirCurrent;
+    QFileSystemModel* qfsModel;
+    //QFileSelector* qfCurrent;
+    QFile* qfCurrent;
+    QFileInfo* qfi;
 
 private:
     QPushButton * button1;
@@ -44,4 +53,12 @@ private:
 private:
     //void resizeEvent(QResizeEvent*);
 
+private slots:
+    void listViewLeft_ItemClicked(const QModelIndex index);
+    void pushButtonUpDir_clicked();
+    void elementsPathChanged();
+    void movePathUpper();
+    
 };
+
+ 
