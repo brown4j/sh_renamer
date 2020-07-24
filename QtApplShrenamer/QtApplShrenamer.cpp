@@ -4,6 +4,9 @@ QtApplShrenamer::QtApplShrenamer(QWidget *parent) : QWidget(parent)
 {
     //QFileSystemModel* model = new QFileSystemModel;
     //model->setRootPath(QDir::currentPath());
+
+    QWidget* qwidgetTop = new QWidget();
+
     layout = new QVBoxLayout();
     layouth = new QHBoxLayout(this);
 
