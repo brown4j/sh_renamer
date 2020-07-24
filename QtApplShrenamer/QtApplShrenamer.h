@@ -1,11 +1,12 @@
 #pragma once
 
-#include <QtWidgets>
+#include <QtWidgets/QMainWindow>
 #include <QFileSystemModel>
 #include <QStringListModel>
 #include <QStandardItemModel>
 #include <QTreeView>
 #include <QListView>
+#include <QTableView>
 #include <QVBoxLayout>
 #include <QHBoxLayout>
 #include <QPushButton>
@@ -15,49 +16,45 @@
 
 class QPushButton;
 
-class QtApplShrenamer : public QWidget
+class QtApplShrenamer : public QMainWindow
 {
     Q_OBJECT
 
 public:
     QtApplShrenamer(QWidget *parent = Q_NULLPTR);
-    void createStatusBar();
+    //void createStatusBar();
+
+//private:
+//    QDir* qdir;
+//    QDir* qdirCurrent;
+//    QFileSystemModel* qfsModel;
+//    //QFileSelector* qfCurrent;
+//    QFile* qfCurrent;
+//    QFileInfo* qfi;
 
 private:
-    QDir* qdir;
-    QDir* qdirCurrent;
-    QFileSystemModel* qfsModel;
-    //QFileSelector* qfCurrent;
-    QFile* qfCurrent;
-    QFileInfo* qfi;
+    QWidget* qwidgetTop;
+    QVBoxLayout* vboxLayoutTop;
 
-private:
-    QPushButton * button1;
-    QPushButton* button2;
-    QPushButton* button3;
-    QPushButton* button4;
-    QHBoxLayout* layouth;
-    QVBoxLayout* layout;
-    //QLabel* printName;
+    QHBoxLayout* hboxLayoutTop;
+    QPushButton* btnPreviousPath;
+    QPushButton* btnUpperPath;
+    QLineEdit* editCurrentPath;
+    QPushButton* btnLoadPath;
 
-    //QLineEdit* nameEdit;
-
-    //QVBoxLayout* layoutVbox1;
-    //QHBoxLayout* layoutHbox1;
-    //QHBoxLayout* layoutHbox2;
-    ////QSplitter* layoutSplitter;
-    //QPushButton* buttonUpDir;
-    //QPushButton* buttonSearchDir;
-    //QLineEdit* lineeditCurrentPath;
+    QHBoxLayout* hboxLayoutBottom;
+    QListView* listviewLeft;
+    QTableView* tableviewRight;
+    
 
 private:
     //void resizeEvent(QResizeEvent*);
 
-private slots:
-    void listViewLeft_ItemClicked(const QModelIndex index);
-    void pushButtonUpDir_clicked();
-    void elementsPathChanged();
-    void movePathUpper();
+//private slots:
+//    void listViewLeft_ItemClicked(const QModelIndex index);
+//    void pushButtonUpDir_clicked();
+//    void elementsPathChanged();
+//    void movePathUpper();
     
 };
 

@@ -1,33 +1,47 @@
 #include "QtApplShrenamer.h"
 
-QtApplShrenamer::QtApplShrenamer(QWidget *parent) : QWidget(parent)
+QtApplShrenamer::QtApplShrenamer(QWidget* parent) : QMainWindow(parent) 
 {
     //QFileSystemModel* model = new QFileSystemModel;
     //model->setRootPath(QDir::currentPath());
 
-    QWidget* qwidgetTop = new QWidget();
+    qwidgetTop = new QWidget();
 
-    layout = new QVBoxLayout();
-    layouth = new QHBoxLayout(this);
+    hboxLayoutTop = new QHBoxLayout();
+    btnPreviousPath = new QPushButton("ก็", this);
+    btnUpperPath = new QPushButton("ก่", this);
+    btnLoadPath = new QPushButton("...", this);
+    hboxLayoutTop->addWidget(btnPreviousPath);
+    hboxLayoutTop->addWidget(btnUpperPath);
+    hboxLayoutTop->addWidget(btnLoadPath);
+    
+    hboxLayoutBottom = new QHBoxLayout();
+    listviewLeft = new QListView(this);
+    tableviewRight = new QTableView(this);
+    hboxLayoutBottom->addWidget(listviewLeft);
+    hboxLayoutBottom->addWidget(tableviewRight);
 
-    button1 = new QPushButton("Button1", this);
-    button2 = new QPushButton("Button2", this);
-    button3 = new QPushButton("Button3", this);
-    button4 = new QPushButton("Button4", this);
+    vboxLayoutTop = new QVBoxLayout();
+    vboxLayoutTop->addLayout(hboxLayoutTop);
+    vboxLayoutTop->addLayout(hboxLayoutBottom);
 
+    //setLayout(vboxLayoutTop);
+    qwidgetTop->setLayout(vboxLayoutTop);
+    //centralWidget()->setLayout(qwidgetTop);
+    //this->setLayout(vboxLayoutTop);
+    this->setCentralWidget(qwidgetTop);
     //button1->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
     //button2->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
 
-       layout->setSpacing(3);
-       layout->addStretch(1);
-    layout->addWidget(button2);
-    layout->addWidget(button1);
-    layout->addStretch(1);
+    //   layout->setSpacing(3);
+    //   layout->addStretch(1);
+    //layout->addWidget(button2);
+    //layout->addWidget(button1);
+    //layout->addStretch(1);
 
-    layouth->addSpacing(15);
-    layouth->addWidget(button3);
-    layouth->addLayout(layout);
-    setLayout(layouth);
+    //layouth->addSpacing(15);
+    //layouth->addWidget(button3);
+    //layouth->addLayout(layout);
      
     //QVBoxLayout* layoutVbox1 = new QVBoxLayout();
 
@@ -36,7 +50,6 @@ QtApplShrenamer::QtApplShrenamer(QWidget *parent) : QWidget(parent)
     //layoutHbox1->addWidget(buttonUpDir);
 
     ////buttonSearchDir = new QPushButton("O");
-    ////layoutHbox1->addWidget(buttonSearchDir);
     //
     //QHBoxLayout* layoutHbox2 = new QHBoxLayout();
     //QLineEdit* lineeditCurrentPath = new QLineEdit("");
@@ -45,8 +58,6 @@ QtApplShrenamer::QtApplShrenamer(QWidget *parent) : QWidget(parent)
     //layoutVbox1->addLayout(layoutHbox1);
     //layoutVbox1->addLayout(layoutHbox2);
 
-    ////setLayout(layoutVbox1);
-    //centralWidget()->setLayout(layoutHbox1);
 
     //layoutSplitter = new QSplitter(this);
     //QFileSystemModel* model = new QFileSystemModel;
