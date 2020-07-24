@@ -1,18 +1,25 @@
-#include "QtApplShrenamer.h"
+ï»¿#include "QtApplShrenamer.h"
 
 QtApplShrenamer::QtApplShrenamer(QWidget* parent) : QMainWindow(parent) 
 {
     //QFileSystemModel* model = new QFileSystemModel;
     //model->setRootPath(QDir::currentPath());
+    const QSize btnPathCtrlSize = QSize(30, 20);
 
     qwidgetTop = new QWidget();
 
     hboxLayoutTop = new QHBoxLayout();
-    btnPreviousPath = new QPushButton("¡ç", this);
-    btnUpperPath = new QPushButton("¡è", this);
+    btnPreviousPath = new QPushButton(QString::fromWCharArray(L"\u2190"), this);
+    btnPreviousPath->setFixedSize(btnPathCtrlSize);
+    btnUpperPath = new QPushButton(QString::fromWCharArray(L"\u2191"), this);
+    btnUpperPath->setFixedSize(btnPathCtrlSize);
+    // UTF-8 code from https://cloford.com/resources/charcodes/utf-8_arrows.htm
+    editCurrentPath = new QLineEdit();
     btnLoadPath = new QPushButton("...", this);
+    btnLoadPath->setFixedSize(btnPathCtrlSize);
     hboxLayoutTop->addWidget(btnPreviousPath);
     hboxLayoutTop->addWidget(btnUpperPath);
+    hboxLayoutTop->addWidget(editCurrentPath);
     hboxLayoutTop->addWidget(btnLoadPath);
     
     hboxLayoutBottom = new QHBoxLayout();
