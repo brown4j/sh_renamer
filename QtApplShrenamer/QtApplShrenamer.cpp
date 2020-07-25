@@ -6,7 +6,15 @@ QtApplShrenamer::QtApplShrenamer(QWidget* parent) : QMainWindow(parent)
     //model->setRootPath(QDir::currentPath());
     const QSize btnPathCtrlSize = QSize(30, 20);
 
+    //menuBarTop = new QMenu();
+    //menuBarTop->addMenu(tr("&File")); 
+    //menuBarTop->addAction(newAct);
+    //menuBarTop->addAction(openAct);
+
+    statusBar()->showMessage(tr("Ready"));
+
     qwidgetTop = new QWidget();
+    setCentralWidget(qwidgetTop);
 
     hboxLayoutTop = new QHBoxLayout();
     btnPreviousPath = new QPushButton(QString::fromWCharArray(L"\u2190"), this);
@@ -36,7 +44,13 @@ QtApplShrenamer::QtApplShrenamer(QWidget* parent) : QMainWindow(parent)
     qwidgetTop->setLayout(vboxLayoutTop);
     //centralWidget()->setLayout(qwidgetTop);
     //this->setLayout(vboxLayoutTop);
-    this->setCentralWidget(qwidgetTop);
+
+    createActions();
+    createMenus();
+
+    QString message = tr("A context menu is available by right-clicking");
+    statusBar()->showMessage(message);
+
     //button1->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
     //button2->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
 
@@ -89,3 +103,61 @@ QtApplShrenamer::QtApplShrenamer(QWidget* parent) : QMainWindow(parent)
 //    //layoutVbox1->setFixedSize(this->width(), this->height());
 //    
 //}
+
+//#ifndef QT_NO_CONTEXTMENU
+//void QtApplShrenamer::contextMenuEvent(QContextMenuEvent* event)
+//{
+//    QMenu menu(this);
+//    menu.addAction(cutAct);
+//    menu.addAction(copyAct);
+//    menu.addAction(pasteAct);
+//    menu.exec(event->globalPos());
+//}
+//#endif // QT_NO_CONTEXTMENU
+
+
+void QtApplShrenamer::createActions()
+{
+    newAct = new QAction(tr("&New"), this);
+    newAct->setShortcuts(QKeySequence::New);
+    newAct->setStatusTip(tr("Create a new file"));
+    connect(newAct, &QAction::triggered, this, &QtApplShrenamer::newFile);
+
+    cutAct = new QAction(tr("Cu&t"), this);
+    cutAct->setShortcuts(QKeySequence::Cut);
+    cutAct->setStatusTip(tr("Cut the current selection's contents to the "
+        "clipboard"));
+    connect(cutAct, &QAction::triggered, this, &QtApplShrenamer::cut);
+
+    copyAct = new QAction(tr("&Copy"), this);
+    copyAct->setShortcuts(QKeySequence::Copy);
+    copyAct->setStatusTip(tr("Copy the current selection's contents to the "
+        "clipboard"));
+    connect(copyAct, &QAction::triggered, this, &QtApplShrenamer::copy);
+
+    pasteAct = new QAction(tr("&Paste"), this);
+    pasteAct->setShortcuts(QKeySequence::Paste);
+    pasteAct->setStatusTip(tr("Paste the clipboard's contents into the current "
+        "selection"));
+    connect(pasteAct, &QAction::triggered, this, &QtApplShrenamer::paste);
+    //! [4]
+     
+}
+
+void QtApplShrenamer::createMenus()
+{
+    //! [9] //! [10]
+    fileMenu = menuBar()->addMenu(tr("&File"));
+    fileMenu->addAction(newAct);
+    fileMenu->addAction(copyAct);
+    //! [9] 
+}
+
+QtApplShrenamer::~QtApplShrenamer()
+{
+}
+
+void QtApplShrenamer::copy()
+{
+    editCurrentPath->setText(tr("Invoked <b>Edit|Copy</b>"));
+}
