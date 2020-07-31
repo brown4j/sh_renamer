@@ -1,7 +1,10 @@
-﻿#include "QtApplShrenamer.h"
+﻿#include <QtWidgets>
 
-QtApplShrenamer::QtApplShrenamer(QWidget* parent) : QMainWindow(parent) 
+#include "QtApplShrenamer.h"
+
+QtApplShrenamer::QtApplShrenamer()
 {
+
     //QFileSystemModel* model = new QFileSystemModel;
     //model->setRootPath(QDir::currentPath());
     const QSize btnPathCtrlSize = QSize(30, 20);
@@ -115,6 +118,23 @@ QtApplShrenamer::QtApplShrenamer(QWidget* parent) : QMainWindow(parent)
 //}
 //#endif // QT_NO_CONTEXTMENU
 
+void QtApplShrenamer::newFile()
+{
+    editCurrentPath->setText(tr("Invoked <b>File|New</b>"));
+}
+
+void QtApplShrenamer::about()
+{
+    editCurrentPath->setText(tr("Invoked <b>Help|About</b>"));
+    //QMessageBox::about(this, tr("About Menu"),
+    //    tr("The <b>Menu</b> example shows how to create "
+    //        "menu-bar menus and context menus."));
+}
+
+void QtApplShrenamer::aboutQt()
+{
+    editCurrentPath->setText(tr("Invoked <b>Help|About Qt</b>"));
+}
 
 void QtApplShrenamer::createActions()
 {
@@ -123,41 +143,33 @@ void QtApplShrenamer::createActions()
     newAct->setStatusTip(tr("Create a new file"));
     connect(newAct, &QAction::triggered, this, &QtApplShrenamer::newFile);
 
-    cutAct = new QAction(tr("Cu&t"), this);
-    cutAct->setShortcuts(QKeySequence::Cut);
-    cutAct->setStatusTip(tr("Cut the current selection's contents to the "
-        "clipboard"));
-    connect(cutAct, &QAction::triggered, this, &QtApplShrenamer::cut);
+    exitAct = new QAction(tr("E&xit"), this);
+    exitAct->setShortcuts(QKeySequence::Quit);
+    exitAct->setStatusTip(tr("Exit the application"));
+    connect(exitAct, &QAction::triggered, this, &QWidget::close);
 
-    copyAct = new QAction(tr("&Copy"), this);
-    copyAct->setShortcuts(QKeySequence::Copy);
-    copyAct->setStatusTip(tr("Copy the current selection's contents to the "
-        "clipboard"));
-    connect(copyAct, &QAction::triggered, this, &QtApplShrenamer::copy);
+    aboutAct = new QAction(tr("&About"), this);
+    aboutAct->setStatusTip(tr("Show the application's About box"));
+    connect(aboutAct, &QAction::triggered, this, &QtApplShrenamer::about);
 
-    pasteAct = new QAction(tr("&Paste"), this);
-    pasteAct->setShortcuts(QKeySequence::Paste);
-    pasteAct->setStatusTip(tr("Paste the clipboard's contents into the current "
-        "selection"));
-    connect(pasteAct, &QAction::triggered, this, &QtApplShrenamer::paste);
-    //! [4]
-     
+    aboutQtAct = new QAction(tr("About &Qt"), this);
+    aboutQtAct->setStatusTip(tr("Show the Qt library's About box"));
+    connect(aboutQtAct, &QAction::triggered, qApp, &QApplication::aboutQt);
+    connect(aboutQtAct, &QAction::triggered, this, &QtApplShrenamer::aboutQt);
 }
 
 void QtApplShrenamer::createMenus()
 {
-    //! [9] //! [10]
     fileMenu = menuBar()->addMenu(tr("&File"));
     fileMenu->addAction(newAct);
-    fileMenu->addAction(copyAct);
+    //! [9]
+    //! [11]
+    fileMenu->addSeparator();
+    //! [11]
+    fileMenu->addAction(exitAct);
+
+    helpMenu = menuBar()->addMenu(tr("&Help"));
+    helpMenu->addAction(aboutAct);
+    helpMenu->addAction(aboutQtAct);
     //! [9] 
-}
-
-QtApplShrenamer::~QtApplShrenamer()
-{
-}
-
-void QtApplShrenamer::copy()
-{
-    editCurrentPath->setText(tr("Invoked <b>Edit|Copy</b>"));
 }

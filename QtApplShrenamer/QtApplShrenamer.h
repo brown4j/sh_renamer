@@ -1,6 +1,7 @@
 #pragma once
 
-#include <QtWidgets/QMainWindow>
+#include <QMainWindow>
+
 #include <QFileSystemModel>
 #include <QStringListModel>
 #include <QStandardItemModel>
@@ -28,8 +29,7 @@ class QtApplShrenamer : public QMainWindow
     Q_OBJECT
 
 public:
-    QtApplShrenamer(QWidget *parent = Q_NULLPTR);
-    ~QtApplShrenamer();
+    QtApplShrenamer();
     //void createStatusBar();
 
 //protected:
@@ -45,6 +45,16 @@ public:
 //    //QFileSelector* qfCurrent;
 //    QFile* qfCurrent;
 //    QFileInfo* qfi;
+
+private slots:
+    void newFile();
+    void about();
+    void aboutQt();
+
+private:
+    void createActions();
+    void createMenus();
+
 
 private:
     QMenu* menuBarTop;
@@ -62,23 +72,15 @@ private:
     QTableView* tableviewRight;
 
     QMenu* fileMenu;
+    QMenu* helpMenu;
     QAction* newAct;
-    QAction* cutAct;
-    QAction* copyAct;
-    QAction* pasteAct;
-    
+    QAction* exitAct;
+    QAction* aboutAct;
+    QAction* aboutQtAct;
 
-private:
     
-    void createActions();
-    void createMenus();
     //void resizeEvent(QResizeEvent*);
 
-private slots:
-    void newFile();
-    void cut();
-    void copy();
-    void paste();
 //    void listViewLeft_ItemClicked(const QModelIndex index);
 //    void pushButtonUpDir_clicked();
 //    void elementsPathChanged();
