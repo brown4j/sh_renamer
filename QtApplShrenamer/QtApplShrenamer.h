@@ -38,23 +38,25 @@ public:
 //#endif // QT_NO_CONTEXTMENU
 
 
-//private:
-//    QDir* qdir;
-//    QDir* qdirCurrent;
-//    QFileSystemModel* qfsModel;
-//    //QFileSelector* qfCurrent;
-//    QFile* qfCurrent;
-//    QFileInfo* qfi;
-
 private slots:
     void newFile();
     void about();
     void aboutQt();
 
+    void elementsPathChanged();
+    void movePathUpper();
+
 private:
     void createActions();
     void createMenus();
 
+private:
+    QDir* qdir;
+    QDir* qdirCurrent;
+    QFileSystemModel* qfsModel;
+    //QFileSelector* qfCurrent;
+    QFile* qfCurrent;
+    QFileInfo* qfi;
 
 private:
     QMenu* menuBarTop;

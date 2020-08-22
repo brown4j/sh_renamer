@@ -4,6 +4,8 @@
 
 QtApplShrenamer::QtApplShrenamer()
 {
+    /* visual design start */
+
 
     //QFileSystemModel* model = new QFileSystemModel;
     //model->setRootPath(QDir::currentPath());
@@ -50,7 +52,27 @@ QtApplShrenamer::QtApplShrenamer()
 
     createActions();
     createMenus();
+    
+    /* visual design end */
 
+    
+    /* directory structure start */
+    qdir = new QDir;
+    qdir->setPath(QDir::currentPath());
+
+    //qfCurrent = new QFileSelector;
+    qfCurrent = new QFile;
+    qdirCurrent = new QDir;
+    qfi = new QFileInfo;
+
+    qfsModel = new QFileSystemModel;
+    qfsModel->setRootPath(QDir::currentPath());
+
+    elementsPathChanged();
+    /* directory structure end */
+    
+    
+    
     QString message = tr("A context menu is available by right-clicking");
     statusBar()->showMessage(message);
 
@@ -117,6 +139,24 @@ QtApplShrenamer::QtApplShrenamer()
 //    menu.exec(event->globalPos());
 //}
 //#endif // QT_NO_CONTEXTMENU
+
+void QtApplShrenamer::elementsPathChanged()
+{
+    editCurrentPath->setText(qdir->path());
+    qfsModel->setRootPath(qdir->path());
+
+    listviewLeft->setModel(qfsModel);
+    listviewLeft->setRootIndex(qfsModel->index(qdir->path()));
+    tableviewRight->setModel(qfsModel);
+    tableviewRight->setRootIndex(qfsModel->index(qdir->path()));
+
+}
+
+void QtApplShrenamer::movePathUpper() {
+    qdir->cdUp();
+    elementsPathChanged();
+
+}
 
 void QtApplShrenamer::newFile()
 {
