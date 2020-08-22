@@ -39,9 +39,10 @@ QtApplShrenamer::QtApplShrenamer()
     // bottom horizon box configuration
     hboxLayoutBottom = new QHBoxLayout();
     listviewLeft = new QListView(this);
-    //listviewLeft->setSelectionMode(QAbstractItemView::ExtendedSelection);
-    //listviewLeft->setDragEnabled(true);
-    //listviewLeft->setAcceptDrops(true);
+    listviewLeft->setSelectionMode(QAbstractItemView::ExtendedSelection);
+    listviewLeft->setDragEnabled(true);
+    listviewLeft->setAcceptDrops(true);
+    listviewLeft->setDropIndicatorShown(true);
 
     tableviewRight = new QTableView(this);
     hboxLayoutBottom->addWidget(listviewLeft);
@@ -92,11 +93,6 @@ QtApplShrenamer::QtApplShrenamer()
     connect(btnUpperPath, SIGNAL(clicked()), this, SLOT(movePathUpper()));
     connect(btnPreviousPath, SIGNAL(clicked()), this, SLOT(pushButtonUpDir_clicked()));
     connect(listviewLeft, SIGNAL(clicked(const QModelIndex)), this, SLOT(listviewLeft_ItemClicked(QModelIndex)));
-
-        
-    
-    QString message = tr("A context menu is available by right-clicking");
-    statusBar()->showMessage(message);
 
     //button1->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
     //button2->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
