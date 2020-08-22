@@ -45,10 +45,13 @@ private slots:
 
     void elementsPathChanged();
     void movePathUpper();
+    void listviewLeft_ItemClicked(const QModelIndex);
+
 
 private:
     void createActions();
     void createMenus();
+    QString filesizeCalculator(qint64 qi);
 
 private:
     QDir* qdir;

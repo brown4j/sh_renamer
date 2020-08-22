@@ -6,7 +6,6 @@ QtApplShrenamer::QtApplShrenamer()
 {
     /* visual design start */
 
-
     //QFileSystemModel* model = new QFileSystemModel;
     //model->setRootPath(QDir::currentPath());
     const QSize btnPathCtrlSize = QSize(30, 20);
@@ -21,6 +20,7 @@ QtApplShrenamer::QtApplShrenamer()
     qwidgetTop = new QWidget();
     setCentralWidget(qwidgetTop);
 
+    // upper horizon box configuration
     hboxLayoutTop = new QHBoxLayout();
     btnPreviousPath = new QPushButton(QString::fromWCharArray(L"\u2190"), this);
     btnPreviousPath->setFixedSize(btnPathCtrlSize);
@@ -30,13 +30,19 @@ QtApplShrenamer::QtApplShrenamer()
     editCurrentPath = new QLineEdit();
     btnLoadPath = new QPushButton("...", this);
     btnLoadPath->setFixedSize(btnPathCtrlSize);
+    
     hboxLayoutTop->addWidget(btnPreviousPath);
     hboxLayoutTop->addWidget(btnUpperPath);
     hboxLayoutTop->addWidget(editCurrentPath);
     hboxLayoutTop->addWidget(btnLoadPath);
     
+    // bottom horizon box configuration
     hboxLayoutBottom = new QHBoxLayout();
     listviewLeft = new QListView(this);
+    //listviewLeft->setSelectionMode(QAbstractItemView::ExtendedSelection);
+    //listviewLeft->setDragEnabled(true);
+    //listviewLeft->setAcceptDrops(true);
+
     tableviewRight = new QTableView(this);
     hboxLayoutBottom->addWidget(listviewLeft);
     hboxLayoutBottom->addWidget(tableviewRight);
@@ -53,6 +59,17 @@ QtApplShrenamer::QtApplShrenamer()
     createActions();
     createMenus();
     
+    // resizing window
+    QSize availableSize = qApp->desktop()->availableGeometry().size();
+    int width = availableSize.width() * 0.5;
+    int height = availableSize.height() * 0.7;
+    QSize newSize(width, height);
+    setGeometry( 
+        QStyle::alignedRect( 
+            Qt::LeftToRight, Qt::AlignCenter, newSize, 
+            qApp->desktop()->availableGeometry()  )
+    );
+
     /* visual design end */
 
     
@@ -70,8 +87,13 @@ QtApplShrenamer::QtApplShrenamer()
 
     elementsPathChanged();
     /* directory structure end */
-    
-    
+
+    /* connect functions */
+    connect(btnUpperPath, SIGNAL(clicked()), this, SLOT(movePathUpper()));
+    connect(btnPreviousPath, SIGNAL(clicked()), this, SLOT(pushButtonUpDir_clicked()));
+    connect(listviewLeft, SIGNAL(clicked(const QModelIndex)), this, SLOT(listviewLeft_ItemClicked(QModelIndex)));
+
+        
     
     QString message = tr("A context menu is available by right-clicking");
     statusBar()->showMessage(message);
@@ -212,4 +234,35 @@ void QtApplShrenamer::createMenus()
     helpMenu->addAction(aboutAct);
     helpMenu->addAction(aboutQtAct);
     //! [9] 
+}
+
+void QtApplShrenamer::listviewLeft_ItemClicked(const QModelIndex index) {
+    QString qst = index.data().toString();
+    //qfCurrent->select(qst);
+    //qfCurrent->open()
+    qdirCurrent->setPath(qst);
+
+    qfi->setFile(qst);
+
+    //QMessageBox::information(this, "Current Path", filesizeCalculator(qfi->size()));
+
+    statusBar()->showMessage(qdirCurrent->path() + " (" + filesizeCalculator(qfi->size()) + ")");
+}
+
+
+
+QString QtApplShrenamer::filesizeCalculator(qint64 qi)
+{
+    QString qsunit = "B";
+
+    if (qi > 1024 * 1024) {
+        qi /= (1024 * 1024);
+        qsunit = "MB";
+    }
+    else if (qi > 1024) {
+        qi /= 1024;
+        qsunit = "KB";
+    }
+
+    return QString::number(qi) + qsunit;
 }
